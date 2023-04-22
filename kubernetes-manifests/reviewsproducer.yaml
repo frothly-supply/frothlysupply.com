@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: reviewsproducer
+  name: reviewsproducer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reviewsproducer
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reviewsproducer
+    spec:
+      containers:
+      - image: reviewsproducer
+        imagePullPolicy: Always
+        name: reviewsproducer
+        resources: {}
+        env:
+        - name: SPLUNK_OTEL_AGENT
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://$(SPLUNK_OTEL_AGENT):4317"
+        - name: SPLUNK_METRICS_ENDPOINT
+          value: "http://$(SPLUNK_OTEL_AGENT):9943"
+        - name: OTEL_SERVICE_NAME
+          value: "reviewsproducer"
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "deployment.environment=frothly-eks"
+        - name: OTEL_PROPAGATORS
+          value: 'b3multi'
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviewsproducer
+spec:
+  type: NodePort
+  selector:
+    app: reviewsproducer
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30012

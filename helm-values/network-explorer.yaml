@@ -1,0 +1,7 @@
+clusterName: frothly-eks
+otlp:
+  receiver:
+    host: splunk-otel-collector
+reducer:
+  disableMetrics:
+    - none

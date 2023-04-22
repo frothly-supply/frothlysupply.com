@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-comprehend
+  labels:
+    app: sentiment-comprehend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentiment-comprehend
+  template:
+    metadata:
+      labels:
+        app: sentiment-comprehend
+    spec:
+      containers:
+      - image: 663806183476.dkr.ecr.ap-southeast-2.amazonaws.com/frothly-portal/sentiment-comprehend
+        imagePullPolicy: Always
+        name: sentiment-comprehend
+        env:
+        - name: SPLUNK_OTEL_AGENT
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: OTEL_SERVICE_NAME
+          value: 'sentiment-comprehend'
+        - name: SPLUNK_METRICS_ENDPOINT
+          value: "http://$(SPLUNK_OTEL_AGENT):9943"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://$(SPLUNK_OTEL_AGENT):4317"
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: 'deployment.environment=frothly-eks'
+        - name: OTEL_PROPAGATORS
+          value: 'b3multi'
+        - name: SPLUNK_METRICS_ENABLED
+          value: "true"
+      serviceAccountName: sentiment-comprehend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentiment-comprehend
+spec:
+  type: NodePort
+  selector:
+    app: sentiment-comprehend
+  ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 30013

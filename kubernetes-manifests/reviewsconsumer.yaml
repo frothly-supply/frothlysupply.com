@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: reviewsconsumer
+  name: reviewsconsumer
+spec:
+  replicas: 5
+  serviceName: reviewsconsumer
+  selector:
+    matchLabels:
+      app: reviewsconsumer
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reviewsconsumer
+    spec:
+      containers:
+        - image: reviewsconsumer
+          imagePullPolicy: Always
+          name: reviewsconsumer
+          resources: {}
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_SERVICE_NAME
+              value: "reviewsconsumer"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=frothly-eks"
+            - name: OTEL_PROPAGATORS
+              value: 'b3multi'
+            - name: SPLUNK_PROFILER_LOGS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviewsconsumer
+spec:
+  selector:
+    app: reviewsconsumer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  clusterIP: None

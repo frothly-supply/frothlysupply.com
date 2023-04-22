@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+
+      <!-- This is a JSON appender adds additional fields to logs for logs-traces correlation: 
+           trace ID, span ID, and flag showing sampling decision. -->
+
+      <JsonLayout compact="true" eventEol="true">
+        <KeyValuePair key="trace_id" value="$${ctx:traceId}"/>
+        <KeyValuePair key="span_id" value="$${ctx:spanId}"/>
+        <KeyValuePair key="service.name" value="$${env:OTEL_EXPORTER_ZIPKIN_SERVICE_NAME}"/>
+        <KeyValuePair key="trace_sampled" value="$${ctx:sampled}"/>
+     </JsonLayout>
+
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="io.grpc.netty" level="INFO"/>
+    <Logger name="io.netty" level="INFO"/>
+    <Logger name="sun.net" level="INFO"/>
+    <Root level="TRACE">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>

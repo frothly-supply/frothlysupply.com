@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Copyright 2019 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Builds and pushes docker image for each demo microservice.
+
+set -euo pipefail
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+log() { echo "$1" >&2; }
+
+TAG="${TAG:--}"
+REPO_PREFIX="${REPO_PREFIX:-709774649120.dkr.ecr.us-east-1.amazonaws.com/frothly-portal/}"
+
+while IFS= read -d $'\0' -r dir; do
+    # build image
+    svcname="$(basename "${dir}")"
+    image="${REPO_PREFIX}$svcname"
+    (
+        cd "${dir}"
+        log "Building: ${image}"
+        docker build -t "${image}:latest" .
+
+        log "Pushing: ${image}"
+        docker push "${image}:latest"
+
+        if [ ${TAG} != "-" ]
+        then
+            docker tag "${image}:latest" "${image}:$TAG"
+            docker push "${image}:$TAG"
+        fi
+    )
+done < <(find "${SCRIPTDIR}/../src" -mindepth 1 -maxdepth 1 -type d -print0)
+
+log "Successfully built and pushed all images."

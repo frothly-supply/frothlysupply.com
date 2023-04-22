@@ -1,0 +1,13 @@
+{
+    "products": [
+        {"product_id":"535551674d544133","slogan":"Beer Flavoured Mouthwash","price_usd":10},
+        {"product_id":"535551674d7a4935","slogan":"Beer Scented Air Freshener","price_usd":10},
+        {"product_id":"535551674d546330","slogan":"Beer Flavoured Children's Toothpaste","price_usd":10},
+        {"product_id":"535551674f446733","slogan":"Limited Edition 440ml Shoe (single item)","price_usd":135},
+        {"product_id":"535551674e6a4133","slogan":"Yeast Roast Seasoning","price_usd":15},
+        {"product_id":"535551674d545135","slogan":"T-Shirt: I can see beerly now the foam is gone","price_usd":35},
+        {"product_id":"535551674f544135","slogan":"T-Shirt: lil frothy","price_usd":35},
+        {"product_id":"535551674e546731","slogan":"Brown Trousers","price_usd":80},
+        {"product_id":"535551674e444935","slogan":"Beer Shaped Paperclip (pack of 20)","price_usd":10}
+    ]
+}

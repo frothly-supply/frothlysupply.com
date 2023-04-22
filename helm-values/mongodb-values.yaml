@@ -1,0 +1,8 @@
+auth:
+  enabled: false
+  rootPassword: splunk
+  rootUser: root
+global:
+  namespaceOverride: default
+metrics:
+  enabled: true

@@ -1,0 +1,25 @@
+bin/
+pkg/
+.DS_Store
+*.pyc
+*.swp
+*~
+venv
+node_modules
+.vscode/
+.vs/
+.idea
+.skaffold-*.yaml
+.kubernetes-manifests-*/
+.project
+.eclipse.buildship.core.prefs
+deploy.sh
+./skaffold
+*supplier_payments.csv
+*supplier_payments_notifier.py
+*users.json
+*slack-token.txt
+*signing-secret.txt
+# ignore auto-generated k8s manifests
+release/*.yaml
+yelp_academic_dataset*

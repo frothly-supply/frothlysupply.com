@@ -1,0 +1,15 @@
+deleteTopicEnable: true
+metrics:
+  jmx:
+    enabled: false
+  kafka:
+    enabled: true
+replicaCount: 3
+numPartitions: 5
+zookeeper:
+  metrics:
+    enabled: true
+  persistence:
+    enabled: false
+persistence:
+  enabled: false

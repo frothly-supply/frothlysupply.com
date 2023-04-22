@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frothly-ingress
+  namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: frontend
+            port: 
+              number: 80
+        path: /
+        pathType: Prefix

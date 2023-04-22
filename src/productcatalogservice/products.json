@@ -1,0 +1,103 @@
+{
+    "products": [
+        {
+            "id": "535551674e444935",
+            "name": "Beer Shaped Paperclip (pack of 20)",
+            "description": "Mr Clippy has never been this fun before!",
+            "picture": "/static/img/products/beer_shaped_paperclip.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 10
+            },
+            "categories": ["vintage"]
+        },
+        {
+            "id": "535551674f446733",
+            "name": "Limited Edition 440ml Shoe (single item)",
+            "description": "Contoured for the perfect shoey",
+            "picture": "/static/img/products/yellow_shoey.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 135
+            },
+            "categories": ["photography", "vintage"]
+        },
+        {
+            "id": "535551674d546330",
+            "name": "Beer Flavoured Children's Toothpaste",
+            "description": "Move over Elsa, this toothpaste tastes way better!",
+            "picture": "/static/img/products/beer_flavoured_toothpaste.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 10
+            },
+            "categories": ["cookware"]
+        },
+        {
+            "id": "535551674f544135",
+            "name": "Frothly Tee: lil frothy",
+            "description": "Topical ointments may damage this product.",
+            "picture": "/static/img/products/lil_frothy.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 35
+            },
+            "categories": ["photography", "vintage"]
+        },
+        {
+            "id": "535551674d7a4935",
+            "name": "Beer Scented Air Freshener",
+            "description": "Now your car can also smell like the pub!",
+            "picture": "/static/img/products/beer_airfreshener.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 10
+            },
+            "categories": ["gardening"]
+        },
+        {
+            "id": "535551674d544133",
+            "name": "Beer Flavoured Mouthwash",
+            "description": "Why should mouthwash taste any other way?",
+            "picture": "/static/img/products/beer_flavoured_mouthwash.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 10
+            },
+            "categories": ["music", "vintage"]
+        },
+        {
+            "id": "535551674e546731",
+            "name": "Brown Trousers",
+            "description": "How now brown trou?",
+            "picture": "/static/img/products/brown_trousers.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 80
+            },
+            "categories": ["cookware"]
+        },
+        {
+            "id": "535551674d545135",
+            "name": "Frothly Tee: I can see beerly now the foam is gone",
+            "description": "I can't see all the obstacles in my way",
+            "picture": "/static/img/products/i_can_see_beerly.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 35
+            },
+            "categories": ["cycling"]
+        },
+        {
+            "id": "535551674e6a4133",
+            "name": "Yeast Roast Seasoning",
+            "description": "Your Sunday roast has never tasted this good",
+            "picture": "/static/img/products/yeast_roast_seasoning.png",
+            "priceUsd": {
+                "currencyCode": "USD",
+                "units": 15
+            },
+            "categories": ["gardening"]
+        }
+    ]
+}

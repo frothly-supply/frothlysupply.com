@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: break-controller
+  labels:
+    app: break-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: break-controller
+  template:
+    metadata:
+      labels:
+        app: break-controller
+    spec:
+      containers:
+      - image: break-controller
+        imagePullPolicy: Always
+        name: break-controller
+        env:
+        - name: INGEST_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: ingesttoken
+              key: INGEST_TOKEN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: break-controller
+spec:
+  type: NodePort
+  selector:
+    app: break-controller
+  ports:
+    - port: 5000
+      targetPort: 5000
