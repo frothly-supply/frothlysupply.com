@@ -821,7 +821,7 @@ func VerifySlackRequest(req *http.Request) (bool, error) {
 		return false, err
 	}
 
-	file, err := os.Open("slack-token.txt")
+	file, err := os.Open("signing-secret.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
