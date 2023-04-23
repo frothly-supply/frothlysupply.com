@@ -820,13 +820,15 @@ func VerifySlackRequest(req *http.Request) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-
+	// Read file with signing secret
 	file, err := os.Open("signing-secret.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
+	//Open scanner
 	scanner := bufio.NewScanner(file)
+	//initialise the signing secret variable
 	signingsecret := "blank"
 	// Iterate through each line of the file
 	for scanner.Scan() {
