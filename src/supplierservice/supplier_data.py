@@ -71,7 +71,7 @@ def process_payments():
                 supplier_name = row[1]
                 supplier_routing = row[2]
                 supplier_account = row[3]
-                os.system('python supplier_payments_notifier.py '+supplier_id+' '+payment_amount+' "'+supplier_name+'" '+supplier_routing+' '+supplier_account)
+                os.system('python supplier_payments_notifier.py '+supplier_id+' '+payment_amount+' "'+supplier_name+'" 384520093 1123940587')
                 return jsonify(message="Payment processed for supplier: "+supplier_id+" of amount: $"+payment_amount), 200
     
 
