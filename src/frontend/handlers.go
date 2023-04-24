@@ -612,7 +612,7 @@ func (fe *frontendServer) supplierpaymentslackresponse(w http.ResponseWriter, r 
 	ctx1 := context.Background()
 
 	//this validates the signing signature from the pay_someone slack command
-	valid, err := VerifySlackRequest(r)
+	/*valid, err := VerifySlackRequest(r)
 	if err != nil {
 		fmt.Fprintf(w, "Error in signing verification", err)
 		return
@@ -620,7 +620,7 @@ func (fe *frontendServer) supplierpaymentslackresponse(w http.ResponseWriter, r 
 	if !valid {
 		fmt.Fprintf(w, "Request key invalid", err)
 		return
-	}
+	}*/
 
 	body, err := ioutil.ReadAll(r.Body)
 	bodystring := string(body)
